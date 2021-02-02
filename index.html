@@ -8,34 +8,72 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 
-<body onload="onInit()">
-    <div class="main-container">
-        <h1>Book Shop</h1>
-        <form>
+<body class="text-center" onload="onInit()">
+    <div class="container-fluid main-container">
+        <div class="row">
+            <div class="col-sm">
+                <h1 class="ml-4" data-trans="title">Book Shop</h1>
+                <select class="mb-2 ml-4" name="lang-pick" onchange="onSetLang(this.value)">
+                    <option value="en">English</option>
+                    <option value="he">עברית</option>
+                </select>
 
-            <input class="book-name" type="text" placeholder="Book name" required />
-            <input class="book-price" placeholder="Book price" type="number" min="0.00" max="10000.00" step="0.1"
-                required />
-            <button type="button" onclick="onAddBook()">Create new book</button>
-        </form>
-        <table>
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th colspan="3">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-        <div class="modal hide">
+                <form>
+                    <input class="mb-3 mr-3" data-trans="input-name-placeholder" class="book-name" type="text"
+                        placeholder="Book name" required />
+                    <input class="mb-3 mr-3" data-trans="input-price-placeholder" class="book-price"
+                        placeholder="Book price" type="number" min="0.00" max="10000.00" step="0.1" required />
+                    <button class="btn btn-warning" data-trans="add-butt" type="button" onclick="onAddBook()">Create new
+                        book</button>
+                </form>
+                <div class="hiding-modal hide">
+                    <div class="black-screen">
+                        <div class="modal-update">
+                            <h3>Update price</h3>
+                            <form>
+                                <input data-trans="input-new-price-placeholder" class="AAA" placeholder="Update price"
+                                    type="number" min="0.00" max="10000.00" step="0.1" required />
+                                <button type="button" onclick="onUpdateBook()">Update</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="container mr-0">
+                    <table claass="table bg-light text-light">
+                        <thead>
+                            <tr>
+                                <th onclick="onSetSort(this.innerText)" data-trans="title-id">Id</th>
+                                <th onclick="onSetSort(this.innerText)" data-trans="title-name">Name</th>
+                                <th onclick="onSetSort(this.innerText)" data-trans="title-price">Price</th>
+                                <th data-trans="title-actions" colspan="3">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-read hide">
+                </div>
+                <div class="move-pages">
+                    <button class="btn btn-dark mr-2" data-trans="prev-page" onclick="onPrevPage()">Prev Page</button>
+                    <button class="btn btn-light" data-trans="next-page" onclick="onNextPage()">Next Page</button>
+                </div>
+            </div>
         </div>
     </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
     <script src="js/utils.js"></script>
+    <script src="js/i18n-services.js"></script>
     <script src="js/storage-services.js"></script>
     <script src="js/services.js"></script>
     <script src="js/main-controller.js"></script>

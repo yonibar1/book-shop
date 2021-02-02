@@ -16,23 +16,29 @@ h1{
     font-size: 70px;
 }
 .main-container{
-    background-color: rgb(33, 131, 173);
+    /* background-color: rgb(33, 131, 173); */
+    background-image:url('../img/background1.jpg');
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin:0px;
     padding:10px;
-    height:100vh;
+    height: 100vh;
+
 }
+
 button{
     display: flex;
-    margin:15px;
+    margin:15px auto;
     border-radius: 10px;
     outline: none;
-    background-color:transparent;
     border:none;
     font-size: 30px;
+    color: rgba(0, 0, 0, 0.74);
 }
 button:hover{
     background-color:white;
@@ -43,12 +49,13 @@ table{
     height: 60vh;
     width: 60vw;
     border:1px solid black; 
+    background-color: rgba(255, 255, 255, 0.767);
     margin-bottom: 20px;
 }
 td:hover{
     cursor:default;
 }
-.modal{
+.modal-read{
     display: flex;
     position:fixed;
     right: 10px;
@@ -84,7 +91,23 @@ background-color: white;
 margin: 2px;
 transition: 0.3s;
 }
-.modal-btn{
+select{
+    font-size: 1.2rem;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+input{
+    font-size: 1.2rem;
+    padding: 7px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+.modal-butt{
     width: 30px;
 }
 .decrease:hover{
@@ -92,16 +115,23 @@ transition: 0.3s;
     background-color: rgb(0, 0, 0);
     color: white;
 }
-.btn:hover{
+.butt:hover{
 cursor: pointer;
 }
 th{
     color:white;
     padding: 5px;
     text-decoration-line: underline;
+    cursor: pointer;
+}
+th:hover{
+    transition: 0.4s;
+    background-color: rgba(0, 0, 0, 0.514);
+    color: rgba(255, 255, 255, 0.877);
+    border-radius: 10px;
 }
 td:hover{
-    background-color: rgb(219, 208, 200);
+    background-color: rgba(219, 208, 200, 0);
     box-shadow: 5px 5px 15px -1px #000000;
     transition: 0.3s;
     border-radius: 10px;
@@ -116,6 +146,38 @@ td:hover{
     background-color: rgb(0, 255, 0);
 }
 
+
+.move-pages{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .hide{
     display: none;
 }
+.modal-update{
+    transition: 0.4s;
+    background-color: rgb(219, 208, 200);
+    box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+    border-radius: 10px;
+    width: 300px;
+    height: 300px;
+    margin-bottom: 100px;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .black-screen{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.40);
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

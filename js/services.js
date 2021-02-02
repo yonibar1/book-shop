@@ -3,11 +3,11 @@ const KEY = 'books'
 var gNames = ['Narnia', 'Harry Potter', 'Sherlok Holmes']
 var gImages = ['img/0.jpg', 'img/1.jpg', 'img/2.jpg']
 var gPrices = [40, 50, 60]
-var gNextId = 4
+
 var gBooks;
-var gSortBy = 'name'
-// const PAGE_SIZE = 5
-// var gPageIdx = 0
+var gSortBy = 'Name'
+const PAGE_SIZE = 5
+var gPageIdx = 0
 
 _createBooks()
 
@@ -26,11 +26,15 @@ function _createBooks() {
     _saveBooksToStorage()
 }
 
+function sortBy(value) {
+    gSortBy = value
+    return gBooks.sort(function (book1, book2) {
+        if (gSortBy === 'Name') return book1.name.localeCompare(book2.name);
+        else if (gSortBy === 'Id') return book1.id - book2.id
+        return book1.price - book2.price;
+    })
+}
 
-// function getBooks() {
-//     var startIdx = gPageIdx * PAGE_SIZE
-//     return gBooks.splice(startIdx, startIdx + PAGE_SIZE)
-// }
 
 
 function _saveBooksToStorage() {
@@ -51,6 +55,7 @@ function removeBook(id) {
     _saveBooksToStorage()
 }
 function updateBook(id, price) {
+    if (!price) return
     var updatedBook = gBooks.find(function (book) {
         return book.id == id
     })
@@ -60,7 +65,7 @@ function updateBook(id, price) {
 
 function _createBook(bookName, bookPrice, image) {
     return {
-        id: gNextId++,
+        id: Math.floor(Math.random() * 100),
         name: bookName,
         price: bookPrice,
         img: image,
@@ -78,6 +83,7 @@ function decrease(object) {
     _saveBooksToStorage()
     return num
 }
+
 function increase(object) {
     var num = object.rate
     if (num >= 10) num = 10
@@ -89,3 +95,22 @@ function increase(object) {
     return num
 }
 
+function getBooks() {
+    var startIdx = gPageIdx * PAGE_SIZE;
+    return gBooks.slice(startIdx, startIdx + PAGE_SIZE)
+}
+
+function nextPage() {
+    gPageIdx++;
+    if (gPageIdx * PAGE_SIZE >= gBooks.length) {
+        gPageIdx = 0;
+    }
+}
+
+
+function prevPage() {
+    gPageIdx--;
+    if (gPageIdx * PAGE_SIZE <= gBooks.length) {
+        gPageIdx = 0;
+    }
+}
